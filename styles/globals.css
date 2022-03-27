@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.tw-h1 {
+  @apply font-manrope text-[56px] uppercase font-bold tracking-[2px] leading-[58px];
+}
+
+.tw-h2 {
+  @apply font-manrope text-[40px] uppercase font-bold tracking-[1.5px] leading-[44px];
+}
+
+.tw-h3 {
+  @apply font-manrope text-[32px] uppercase font-bold tracking-[1.15px] leading-[36px];
+}
+
+.tw-h4 {
+  @apply font-manrope text-[28px] uppercase font-bold tracking-[2px] leading-[38px];
+}
+
+.tw-h5 {
+  @apply font-manrope text-[24px] uppercase font-bold tracking-[1.7px] leading-[33px];
+}
+
+.tw-h6 {
+  @apply font-manrope text-[18px] uppercase font-bold tracking-[1.3px] leading-[24px];
+}
+
+.title-mobile {
+  @apply font-manrope text-[36px] uppercase font-bold tracking-[1.29px] leading-[40px];
+}
+
+
+.tw-overline {
+  @apply font-manrope text-[14px] uppercase tracking-[10px] leading-[19px] ;
+}
+
+.tw-subtitle {
+  @apply font-manrope text-[13px] uppercase font-bold tracking-[1px] leading-[25px];
+}
+
+.tw-body {
+  @apply font-manrope text-[15px]  leading-[25px];
+}
+
+.tw-button-orange {
+  @apply font-manrope text-[13px] uppercase font-bold tracking-[1px] leading-[25px] text-white h-[48px] w-[160px] bg-dark-orange hover:bg-light-orange;
+}
+
+.tw-button-no-bg {
+  @apply font-manrope text-[13px] uppercase font-bold tracking-[1px] leading-[25px] text-black h-[48px] w-[160px] hover:bg-black hover:text-white border-black border-2;
+}
+
+.tw-button-black {
+  @apply font-manrope text-[13px] uppercase font-bold tracking-[1px] leading-[25px] h-[48px] w-[160px] text-white bg-black hover:bg-gray-400 hover:text-black border-black border-2;
+}
+
+.tw-button-3 {
+  @apply font-manrope text-[13px] uppercase font-bold tracking-[1px] leading-[25px] text-gray-400 h-[48px] w-[160px] hover:text-dark-orange ;
+}
+
+.text-dark-orange {
+  @apply text-[#D87D4A]
+}
+
+.background-circles {
+  @apply bg-dark-orange bg-[url('../assets/home/desktop/pattern-circles.svg')] bg-no-repeat
+}
+
+.image-container {
+  position: relative;
+
+  .image {
+      width: 100%;
+      height: 100%;
+      position: relative !important;
+      object-fit: cover; 
+  }
+}
