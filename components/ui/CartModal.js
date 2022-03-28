@@ -1,15 +1,10 @@
-import Image from "next/image";
-import { useSelector, useDispatch } from "react-redux";
-// Importing actions from  cart.slice.js
-import {
-  incrementQuantity,
-  decrementQuantity,
-  removeFromCart,
-} from "../../redux/cart.slice";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
+import Link from "next/link";
 
-export default function MyModal() {
+import Cart from "./Cart";
+
+export default function CartModal() {
   let [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
@@ -19,17 +14,6 @@ export default function MyModal() {
   function openModal() {
     setIsOpen(true);
   }
-
-
-  const cart = useSelector((state) => state.cart);
-  const dispatch = useDispatch();
-
-  const getTotalPrice = () => {
-    return cart.reduce(
-      (accumulator, item) => accumulator + item.quantity * item.price,
-      0
-    );
-  };
 
   return (
     <>
@@ -69,10 +53,7 @@ export default function MyModal() {
             </Transition.Child>
 
             {/* This element is to trick the browser into centering the modal contents. */}
-            <span
-              className="inline-block h-screen align-middle"
-              aria-hidden="true"
-            >
+            <span className="inline-block h-screen" aria-hidden="true">
               &#8203;
             </span>
             <Transition.Child
@@ -84,43 +65,17 @@ export default function MyModal() {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-                <Dialog.Title
+              <div className="inline-block w-full max-w-md p-6 mt-32 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                {/* <Dialog.Title
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                  Payment successful
-                </Dialog.Title>
-                <div>
-                  {cart.map((item, key) => (
-                    <div key={key}>
-                      {/* <div className={styles.image}>
-                        <Image src={item.image} height="90" width="65" />
-                      </div> */}
-                      <p>{item.title}</p>
-                       <p>$ {item.price}</p>
-                      <p>{item.quantity}</p>
-                      {/*<div className={styles.buttons}>
-                        <button
-                          onClick={() => dispatch(incrementQuantity(item.id))}
-                        >
-                          +
-                        </button>
-                        <button
-                          onClick={() => dispatch(decrementQuantity(item.id))}
-                        >
-                          -
-                        </button>
-                        <button
-                          onClick={() => dispatch(removeFromCart(item.id))}
-                        >
-                          x
-                        </button>
-                      </div>
-                      <p>$ {item.quantity * item.price}</p> */}
-                    </div>
-                  ))}
-                </div>
+                  Cart
+                </Dialog.Title> */}
+                <Cart calledFromModal={true} />
+                <Link href="/checkout">
+                  <button onClick={closeModal} className="tw-button-orange-wide mt-6">Checkout</button>
+                </Link>
               </div>
             </Transition.Child>
           </div>

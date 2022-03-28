@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Links from "./Links";
-import Modal from "./Modal";
+import CartModal from "./CartModal";
 
 
 export default function Header() {
@@ -52,6 +52,7 @@ export default function Header() {
           </div>
         </section>
         {/* AUDIOPHILE SVG */}
+        <Link href={"/"} >
         <button className="md:flex-1 lg:flex-none w-[143px] h-[25px]">
         <svg xmlns="http://www.w3.org/2000/svg" >
           <path
@@ -59,14 +60,14 @@ export default function Header() {
             fill="#FFF"
             fillRule="nonzero"
           />
-        </svg></button>
+        </svg></button></Link>
         {/* DESKTOP MENU */}
         <div className="hidden lg:flex">
         <Links />
         </div>
         {/* CART */}
         <div className="lg:pl-[120px]">
-        <Modal />
+        <CartModal />
         {/* <Link href="/">
           <a >
             <svg width="23" height="20" xmlns="http://www.w3.org/2000/svg">

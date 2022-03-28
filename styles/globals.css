@@ -39,12 +39,20 @@
   @apply font-manrope text-[13px] uppercase font-bold tracking-[1px] leading-[25px];
 }
 
+.tw-label {
+  @apply font-manrope font-bold text-[12px] tracking-[-.21px];
+}
+
 .tw-body {
   @apply font-manrope text-[15px]  leading-[25px];
 }
 
 .tw-button-orange {
   @apply font-manrope text-[13px] uppercase font-bold tracking-[1px] leading-[25px] text-white h-[48px] w-[160px] bg-dark-orange hover:bg-light-orange;
+}
+
+.tw-button-orange-wide {
+  @apply font-manrope text-[13px] uppercase font-bold tracking-[1px] leading-[25px] text-white h-[48px] w-full bg-dark-orange hover:bg-light-orange;
 }
 
 .tw-button-no-bg {

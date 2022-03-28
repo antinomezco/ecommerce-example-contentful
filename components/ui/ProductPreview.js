@@ -1,6 +1,4 @@
 import Image from "next/image";
-import Links from "./Links";
-import Button3 from "./Button3";
 import Link from "next/link";
 
 export default function Product(props) {

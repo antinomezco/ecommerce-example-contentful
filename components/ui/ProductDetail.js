@@ -35,7 +35,16 @@ export default function Product(props) {
             layout="responsive"
           ></Image>
         </div>
-
+        <div className="w-full hidden lg:block md:pr-12 image-container ">
+          <Image
+            className="mx-auto"
+            src={`${props.images[2].url}`}
+            alt=""
+            width={540}
+            height={560}
+            layout="responsive"
+          ></Image>
+        </div>
         <div className="flex flex-col space-y-6 pl-0 md:justify-evenly md:pl-12">
           {props.new === true && (
             <div className="tw-overline text-dark-orange">NEW PRODUCT</div>

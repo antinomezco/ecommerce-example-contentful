@@ -24,6 +24,7 @@ export default function ProductDetails(props) {
             includes={product.includes}
             moreImages={product.moreImagesCollection.items}
             youMayAlso={product.youMayAlsoCollection.items}
+            cartImage={product.cartImage}
           />
       </div>
     </div>
