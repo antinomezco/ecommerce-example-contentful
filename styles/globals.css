@@ -75,6 +75,17 @@
   @apply bg-dark-orange bg-[url('../assets/home/desktop/pattern-circles.svg')] bg-no-repeat
 }
 
+.form-val {
+  @apply mt-1
+  p-3
+  block
+  w-full
+  rounded-md
+  border-gray-300
+  shadow-sm
+  focus:border-indigo-300 focus:ring focus:ring-[#D87D4A] focus:ring-opacity-100
+}
+
 .image-container {
   position: relative;
 

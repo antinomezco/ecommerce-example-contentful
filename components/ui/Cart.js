@@ -19,25 +19,24 @@ export default function Cart(props) {
       0
     );
   };
-  // console.log(cart);
+  console.log(cart);
   return (
     <div>
-      <div className="flex justify-between">
-        {props.calledFromModal && (
+      {props.cartComponent && (
+        <div className="flex justify-between">
           <div className="tw-h6">Cart ({cart.length})</div>
-        )}
-        {props.calledFromModal && (
           <button
             className="tw-body underline text-black/50"
             onClick={() => dispatch(removeAllFromCart())}
           >
             Remove all
           </button>
-        )}
-      </div>
+        </div>
+      )}
+
       {cart.map((item, key) => (
         <div key={key} className="flex py-6 space-x-6 items-center ">
-          <div className="w-3/12 md:hidden image-container">
+          <div className="w-4/12 md:hidden image-container">
             <Image
               className="mx-auto rounded-lg"
               src={`${item.cartImage.url}`}
@@ -56,7 +55,7 @@ export default function Cart(props) {
             </p>
           </div>
 
-          {props.calledFromModal ? (
+          {props.cartComponent ? (
             <div>
               <div className="flex bg-[#f1f1f1] text-center ">
                 <button
@@ -89,7 +88,7 @@ export default function Cart(props) {
         <div className="tw-body text-black/50 uppercase">Total: </div>
         <div className="tw-h6">$ {getTotalPrice()}</div>
       </div>
-      {!props.calledFromModal && (
+      {!props.cartComponent && (
         <div>
           <div className="flex justify-between">
             <div className="tw-body text-black/50 uppercase">shipping</div>
@@ -107,7 +106,10 @@ export default function Cart(props) {
               $ {(getTotalPrice() * 1.2 + 50).toFixed(2)}
             </div>
           </div>
-          <ConfirmationModal total={(getTotalPrice() * 1.2 + 50).toFixed(2)} cart={cart} />
+          <ConfirmationModal
+            total={(getTotalPrice() * 1.2 + 50).toFixed(2)}
+            cart={cart}
+          />
         </div>
       )}
     </div>

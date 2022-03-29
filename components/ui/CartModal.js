@@ -72,7 +72,7 @@ export default function CartModal() {
                 >
                   Cart
                 </Dialog.Title> */}
-                <Cart calledFromModal={true} />
+                <Cart cartComponent={true} />
                 <Link href="/checkout">
                   <button onClick={closeModal} className="tw-button-orange-wide mt-6">Checkout</button>
                 </Link>

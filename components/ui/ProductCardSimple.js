@@ -18,7 +18,9 @@ export default function ProductCardSimple(props) {
           {props.item}
         </div>
         <Link href={`/category/${props.item}`}>
+          <a>
           <Button3></Button3>
+          </a>
         </Link>
       </div>
     </div>

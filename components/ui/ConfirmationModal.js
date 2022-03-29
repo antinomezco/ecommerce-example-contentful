@@ -134,8 +134,8 @@ export default function ConfirmationModal(props) {
                         </p>
                       </div>
                       {cart.length > 1 && (
-                        <div className="text-black/50">
-                          <div className="w-full border-2 my-5"></div>
+                        <div className="text-black/50 text-center">
+                          <div className="w-full border-[1px] my-2"></div>
                           <div>and {cart.length - 1} other items</div>
                         </div>
                       )}

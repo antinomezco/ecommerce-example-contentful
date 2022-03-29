@@ -9,17 +9,17 @@ export default function Links() {
               </Link>
             </li>
             <li className="hover:text-dark-orange">
-              <Link href={"category/headphones"} passHref>
+              <Link href={"/category/headphones"}>
                 <a>headphones</a>
               </Link>
             </li>
             <li className="hover:text-dark-orange" >
-              <Link href={"category/speakers"} passHref>
+              <Link href={"/category/speakers"}>
                 <a>speakers</a>
               </Link>
             </li>
             <li className="hover:text-dark-orange">
-              <Link href={"category/earphones"} passHref>
+              <Link href={"/category/earphones"}>
                 <a>earphones</a>
               </Link>
             </li>

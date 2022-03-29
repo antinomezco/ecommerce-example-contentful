@@ -5,15 +5,13 @@ import ProductDetail from "../../components/ui/ProductDetail";
 
 export default function ProductDetails(props) {
   const router = useRouter()
-  // const products = props.data
-  // console.log(props)
+  console.log(props)
   const product = props.data[0]
   return (
-    <div>
-      {/* <div className="uppercase text-center tw-h4 text-white bg-black py-6">{router.query.title}</div> */}
-      <div>
+    <>
           <ProductDetail
-            key={product.slug}
+            key={product.id}
+            id={product.id}
             title={product.productName}
             new={product.new}
             desc={product.productDescription}
@@ -26,8 +24,7 @@ export default function ProductDetails(props) {
             youMayAlso={product.youMayAlsoCollection.items}
             cartImage={product.cartImage}
           />
-      </div>
-    </div>
+    </>
   );
 }
 
