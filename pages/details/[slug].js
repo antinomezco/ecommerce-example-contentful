@@ -10,7 +10,7 @@ export default function ProductDetails(props) {
   return (
     <div>
       <ProductDetail
-        key={product.id}
+        key={product.slug}
         id={product.id}
         title={product.productName}
         new={product.new}
