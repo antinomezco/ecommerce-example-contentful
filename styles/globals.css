@@ -30,9 +30,8 @@
   @apply font-manrope text-[36px] uppercase font-bold tracking-[1.29px] leading-[40px];
 }
 
-
 .tw-overline {
-  @apply font-manrope text-[14px] uppercase tracking-[10px] leading-[19px] ;
+  @apply font-manrope text-[14px] uppercase tracking-[10px] leading-[19px];
 }
 
 .tw-subtitle {
@@ -64,35 +63,28 @@
 }
 
 .tw-button-3 {
-  @apply font-manrope text-[13px] uppercase font-bold tracking-[1px] leading-[25px] text-gray-400 h-[48px] w-[160px] hover:text-dark-orange ;
+  @apply font-manrope text-[13px] uppercase font-bold tracking-[1px] leading-[25px] text-gray-400 h-[48px] w-[160px] hover:text-dark-orange;
 }
 
 .text-dark-orange {
-  @apply text-[#D87D4A]
+  @apply text-[#D87D4A];
 }
 
 .background-circles {
-  @apply bg-dark-orange bg-[url('../assets/home/desktop/pattern-circles.svg')] bg-no-repeat
+  @apply bg-dark-orange bg-[url('../assets/home/desktop/pattern-circles.svg')] bg-no-repeat;
 }
 
 .form-val {
-  @apply mt-1
-  p-3
-  block
-  w-full
-  rounded-md
-  border-gray-300
-  shadow-sm
-  focus:border-indigo-300 focus:ring focus:ring-[#D87D4A] focus:ring-opacity-100
+  @apply mt-1 p-3  block  w-full  rounded-md  border-gray-300  shadow-sm  focus:border-indigo-300 focus:ring focus:ring-[#D87D4A] focus:ring-opacity-100;
 }
 
 .image-container {
   position: relative;
 
   .image {
-      width: 100%;
-      height: 100%;
-      position: relative !important;
-      object-fit: cover; 
+    width: 100%;
+    height: 100%;
+    position: relative !important;
+    object-fit: cover;
   }
 }

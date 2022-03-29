@@ -9,7 +9,7 @@ export default function ProductDetails(props) {
   const product = props.data[0];
   return (
     <div>
-      <ProductDetail
+      {/* <ProductDetail
         key={product.id}
         id={product.id}
         title={product.productName}
@@ -23,7 +23,7 @@ export default function ProductDetails(props) {
         moreImages={product.moreImagesCollection.items}
         youMayAlso={product.youMayAlsoCollection.items}
         cartImage={product.cartImage}
-      />
+      /> */}
     </div>
   );
 }

@@ -69,7 +69,7 @@ export default function Checkout() {
                       {...register("name")}
                       type="text"
                       className={`form-val ${
-                        errors.name ? "is-invalid" : ""
+                        errors.name ? "is-invalid ring-red-500" : ""
                       }`}
                       placeholder="Name Here"
                     />
@@ -177,15 +177,15 @@ export default function Checkout() {
                     <legend className="tw-label">Payment Method</legend>
                     <div className="mt-2 space-y-4">
                       <div className="w-full border-2 border-gray-300 shadow-sm rounded-lg p-3 focus:border-indigo-300 focus:ring focus:ring-[#D87D4A] focus:ring-opacity-100">
-                        <label className="inline-flex items-center">
+                        <label className="inline-flex items-center w-full">
                           <input
-                            className="form-radio"
+                            className="form-radio "
                             type="radio"
                             checked
                             name="radio-direct"
                             value="1"
                           />
-                          <span className="ml-2">Option 1</span>
+                          <span className="ml-2">e-Money</span>
                         </label>
                       </div>
                       <div
@@ -193,14 +193,14 @@ export default function Checkout() {
                     shadow-sm rounded-lg p-3
                     focus:border-indigo-300 focus:ring focus:ring-[#D87D4A] focus:ring-opacity-100"
                       >
-                        <label className="inline-flex items-center">
+                        <label className="inline-flex items-center w-full">
                           <input
                             className="form-radio"
                             type="radio"
                             name="radio-direct"
                             value="2"
                           />
-                          <span className="ml-2">Option 2</span>
+                          <span className="ml-2 ">Cash on Delivery</span>
                         </label>
                       </div>
                     </div>
