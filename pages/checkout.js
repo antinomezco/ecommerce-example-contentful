@@ -8,7 +8,7 @@ import * as Yup from "yup";
 
 export default function Checkout() {
   const cart = useSelector((state) => state.cart);
-  console.log(cart);
+  console.log("cart", cart);
 
   const validationSchema = Yup.object().shape({
     firstName: Yup.string().required("First Name is required"),

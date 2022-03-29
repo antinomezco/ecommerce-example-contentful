@@ -78,9 +78,9 @@ export default function ConfirmationModal(props) {
                 <div>
                   <div className="bg-[#f1f1f1] w-full rounded-t-lg p-5">
                     <div className="hidden lg:block">
-                      {cart.map((item, key) => (
+                      {cart.map((item) => (
                         <div
-                          key={key}
+                          key={item.id}
                           className="flex py-6 space-x-6 items-center "
                         >
                           <div className="w-3/12 md:hidden image-container">

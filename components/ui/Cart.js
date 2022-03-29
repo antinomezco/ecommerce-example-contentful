@@ -19,7 +19,7 @@ export default function Cart(props) {
       0
     );
   };
-  console.log(cart);
+  console.log("cart.js", cart);
   return (
     <div>
       {props.cartComponent && (
@@ -34,8 +34,8 @@ export default function Cart(props) {
         </div>
       )}
 
-      {cart.map((item, key) => (
-        <div key={key} className="flex py-6 space-x-6 items-center ">
+      {cart.map((item) => (
+        <div key={item.id} className="flex py-6 space-x-6 items-center ">
           <div className="w-4/12 md:hidden image-container">
             <Image
               className="mx-auto rounded-lg"
