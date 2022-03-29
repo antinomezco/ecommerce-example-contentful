@@ -11,7 +11,6 @@ export default function ProductDetails(props) {
     <div>
       <ProductDetail
         key={product.slug}
-        id={product.id}
         title={product.productName}
         new={product.new}
         desc={product.productDescription}
