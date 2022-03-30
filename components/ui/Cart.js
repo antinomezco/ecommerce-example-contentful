@@ -19,7 +19,7 @@ export default function Cart(props) {
       0
     );
   };
-  console.log("cart.js", cart);
+  // console.log("cart.js", cart);
   return (
     <div>
       {props.cartComponent && (
@@ -106,10 +106,10 @@ export default function Cart(props) {
               $ {(getTotalPrice() * 1.2 + 50).toFixed(2)}
             </div>
           </div>
-          <ConfirmationModal
+          {/* <ConfirmationModal
             total={(getTotalPrice() * 1.2 + 50).toFixed(2)}
             cart={cart}
-          />
+          /> */}
         </div>
       )}
     </div>

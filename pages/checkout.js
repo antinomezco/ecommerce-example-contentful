@@ -5,11 +5,22 @@ import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import { useState } from "react";
+import ConfirmationModal from "../components/ui/ConfirmationModal";
 
 export default function Checkout() {
   const cart = useSelector((state) => state.cart);
-  console.log("cart", cart);
-
+  const [payment, setPayment] = useState(null);
+  const [formComplete, setFormComplete] = useState(null);
+  const handleChange = (e) => {
+    setPayment(e.target.value);
+  };
+  const getTotalPrice = () => {
+    return cart.reduce(
+      (accumulator, item) => accumulator + item.quantity * item.price,
+      0
+    );
+  };
   const validationSchema = Yup.object().shape({
     firstName: Yup.string().required("First Name is required"),
     name: Yup.string().required("Name is required"),
@@ -33,6 +44,12 @@ export default function Checkout() {
       .matches(/(^\d{5}$)|(^\d{5}-\d{4}$)/, "Zip code is invalid"),
     city: Yup.string().required("City is required"),
     country: Yup.string().required("Country is required"),
+    eMoney: Yup.string().required(
+      "e-Money is required if not using Cash on Delivery"
+    ),
+    eMoneyPin: Yup.string().required(
+      "e-Money PIN is required if not using Cash on Delivery"
+    ),
   });
   const formOptions = { resolver: yupResolver(validationSchema) };
 
@@ -40,9 +57,9 @@ export default function Checkout() {
   const { register, handleSubmit, reset, formState } = useForm(formOptions);
   const { errors } = formState;
 
-  function onSubmit(data) {
-    // display form data on success
-    alert("SUCCESS!! :-)\n\n" + JSON.stringify(data, null, 4));
+  function onSubmit(e) {
+    e.preventDefault();
+    setFormComplete(true);
     return false;
   }
 
@@ -50,13 +67,13 @@ export default function Checkout() {
     <div>
       {cart.length === 0 ? (
         <div className="bg-[#f2f2f2] py-6">
-          <h1 className="py-48 grid place-content-center">
+          <h1 className="grid place-content-center py-48">
             Your Cart is Empty!
           </h1>
         </div>
       ) : (
-        <form onSubmit={handleSubmit(onSubmit)} className="bg-[#f2f2f2] py-6">
-          <div className="bg-white w-11/12 mx-auto p-6 space-y-6 rounded-lg">
+        <form onSubmit={onSubmit} className="bg-[#f2f2f2] py-6">
+          <div className="mx-auto w-11/12 space-y-6 rounded-lg bg-white p-6">
             <div className="tw-h4">checkout</div>
             <div className="tw-subtitle text-dark-orange">billing details</div>
             <div>
@@ -73,7 +90,7 @@ export default function Checkout() {
                       }`}
                       placeholder="Name Here"
                     />
-                    <div className="text-red-500 text-xs pt-1 pl-3">
+                    <div className="pt-1 pl-3 text-xs text-red-500">
                       {errors.name?.message}
                     </div>
                   </label>
@@ -83,12 +100,10 @@ export default function Checkout() {
                       type="email"
                       name="email"
                       {...register("email")}
-                      className={`form-val ${
-                        errors.name ? "is-invalid" : ""
-                      }`}
+                      className={`form-val ${errors.name ? "is-invalid" : ""}`}
                       placeholder="john@example.com"
                     />
-                    <div className="text-red-500 text-xs pt-1 pl-3">
+                    <div className="pt-1 pl-3 text-xs text-red-500">
                       {errors.email?.message}
                     </div>
                   </label>
@@ -103,7 +118,7 @@ export default function Checkout() {
                       }`}
                       placeholder="555-555-5555"
                     />
-                    <div className="text-red-500 text-xs pt-1 pl-3">
+                    <div className="pt-1 pl-3 text-xs text-red-500">
                       {errors.phoneNumber?.message}
                     </div>
                   </label>
@@ -121,7 +136,7 @@ export default function Checkout() {
                       }`}
                       placeholder="123 fake st."
                     />
-                    <div className="text-red-500 text-xs pt-1 pl-3">
+                    <div className="pt-1 pl-3 text-xs text-red-500">
                       {errors.address?.message}
                     </div>
                   </label>
@@ -136,7 +151,7 @@ export default function Checkout() {
                       }`}
                       placeholder="90210"
                     />
-                    <div className="text-red-500 text-xs pt-1 pl-3">
+                    <div className="pt-1 pl-3 text-xs text-red-500">
                       {errors.zipCode?.message}
                     </div>
                   </label>
@@ -146,12 +161,10 @@ export default function Checkout() {
                       name="city"
                       {...register("city")}
                       type="text"
-                      className={`form-val ${
-                        errors.city ? "is-invalid" : ""
-                      }`}
+                      className={`form-val ${errors.city ? "is-invalid" : ""}`}
                       placeholder="San Diego"
                     />
-                    <div className="text-red-500 text-xs pt-1 pl-3">
+                    <div className="pt-1 pl-3 text-xs text-red-500">
                       {errors.city?.message}
                     </div>
                   </label>
@@ -166,7 +179,7 @@ export default function Checkout() {
                       }`}
                       placeholder="Mexico"
                     />
-                    <div className="text-red-500 text-xs pt-1 pl-3">
+                    <div className="pt-1 pl-3 text-xs text-red-500">
                       {errors.country?.message}
                     </div>
                   </label>
@@ -176,80 +189,88 @@ export default function Checkout() {
                   <fieldset className="block">
                     <legend className="tw-label">Payment Method</legend>
                     <div className="mt-2 space-y-4">
-                      <div className="w-full border-2 border-gray-300 shadow-sm rounded-lg p-3 focus:border-indigo-300 focus:ring focus:ring-[#D87D4A] focus:ring-opacity-100">
-                        <label className="inline-flex items-center w-full">
+                      <div className="w-full rounded-lg border-2 border-gray-300 p-3 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#D87D4A] focus:ring-opacity-100">
+                        <label className="inline-flex w-full items-center">
                           <input
                             className="form-radio "
                             type="radio"
-                            checked
                             name="radio-direct"
-                            value="1"
+                            value="e-Money"
+                            onChange={handleChange}
                           />
                           <span className="ml-2">e-Money</span>
                         </label>
                       </div>
-                      <div
-                        className="w-full border-2 border-gray-300
-                    shadow-sm rounded-lg p-3
-                    focus:border-indigo-300 focus:ring focus:ring-[#D87D4A] focus:ring-opacity-100"
-                      >
-                        <label className="inline-flex items-center w-full">
+                      <div className="w-full rounded-lg border-2 border-gray-300 p-3 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#D87D4A] focus:ring-opacity-100">
+                        <label className="inline-flex w-full items-center">
                           <input
                             className="form-radio"
                             type="radio"
                             name="radio-direct"
-                            value="2"
+                            value="cod"
+                            onChange={handleChange}
                           />
                           <span className="ml-2 ">Cash on Delivery</span>
                         </label>
                       </div>
                     </div>
                   </fieldset>
-                  <label className="block">
-                    <span className="tw-label">e-Money</span>
-                    <input
-                      type="email"
-                      className="
+                  {payment === "e-Money" && (
+                    <>
+                      <label className="block">
+                        <span className="tw-label">e-Money</span>
+                        <input
+                          type="string"
+                          {...register("eMoney")}
+                          className="
                     mt-1
-                    p-3
                     block
                     w-full
                     rounded-md
                     border-gray-300
-                    shadow-sm
-                    focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
-                  "
-                      placeholder="555-555-5555"
-                    />
-                  </label>
-                  <label className="block">
-                    <span className="tw-label">e-Money PIN</span>
-                    <input
-                      type="email"
-                      className="
-                    mt-1
                     p-3
-                    block
-                    w-full
-                    rounded-md
-                    border-gray-300
                     shadow-sm
                     focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
                   "
-                      placeholder="555-555-5555"
-                    />
-                  </label>
+                          placeholder="Account number"
+                        />
+                        <div className="pt-1 pl-3 text-xs text-red-500">
+                          {errors.eMoney?.message}
+                        </div>
+                      </label>
+                      <label className="block">
+                        <span className="tw-label">e-Money PIN</span>
+                        <input
+                          type="string"
+                          {...register("eMoneyPin")}
+                          className="mt-1 block w-full rounded-md border-gray-300 p-3 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                          placeholder="12345"
+                        />
+                        <div className="pt-1 pl-3 text-xs text-red-500">
+                          {errors.eMoneyPin?.message}
+                        </div>
+                      </label>{" "}
+                    </>
+                  )}
                 </div>
               </div>
             </div>
           </div>
-          <div className="bg-white w-11/12 mx-auto mt-6 rounded-lg">
+          <div className="mx-auto mt-6 w-11/12 rounded-lg bg-white">
             <div className="p-5">
               <div className="tw-h6">Summary</div>
               <Cart />
-              <button type="submit" className="btn btn-primary mr-1">
-                Register
-              </button>
+
+              {!formComplete ? (
+                <button type="submit" className="tw-button-orange-wide">
+                  Confirm Information
+                </button>
+              ) : (
+                <ConfirmationModal
+                  total={(getTotalPrice() * 1.2 + 50).toFixed(2)}
+                  cart={cart}
+                />
+              )}
             </div>
           </div>
         </form>
