@@ -12,6 +12,7 @@ export default function Checkout() {
   const cart = useSelector((state) => state.cart);
   const [payment, setPayment] = useState(null);
   const [formComplete, setFormComplete] = useState(null);
+  
   const handleChange = (e) => {
     setPayment(e.target.value);
   };
@@ -201,6 +202,21 @@ export default function Checkout() {
                   <fieldset className="block">
                     <legend className="tw-label">Payment Method</legend>
                     <div className="mt-2 space-y-4">
+                    <div className="w-full rounded-lg border-2 border-gray-300 p-3 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#D87D4A] focus:ring-opacity-100">
+                        <label className="inline-flex w-full items-center">
+                          <input
+                            {...register("decide")}
+                            className="form-radio "
+                            type="radio"
+                            name="decide"
+                            id="e-Money"
+                            value="e-Money"
+                            onChange={handleChange}
+                            defaultChecked={getValues("decide") === "e-Money"}
+                          />
+                          <span className="ml-2">e-Money</span>
+                        </label>
+                      </div>
                       <div className="w-full rounded-lg border-2 border-gray-300 p-3 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#D87D4A] focus:ring-opacity-100">
                         <label className="inline-flex w-full items-center">
                           <input
@@ -216,25 +232,11 @@ export default function Checkout() {
                           <span className="ml-2 ">Cash on Delivery</span>
                         </label>
                       </div>
-                      <div className="w-full rounded-lg border-2 border-gray-300 p-3 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#D87D4A] focus:ring-opacity-100">
-                        <label className="inline-flex w-full items-center">
-                          <input
-                            {...register("decide")}
-                            className="form-radio "
-                            type="radio"
-                            name="decide"
-                            id="e-Money"
-                            value="e-Money"
-                            onChange={handleChange}
-                            defaultChecked={getValues("decide") === "e-Money"}
-                          />
-                          <span className="ml-2">e-Money</span>
-                        </label>
-                      </div>
                     </div>
-                    <div className="pt-1 pl-3 text-xs text-red-500">
-                          {errors.decide?.message}
-                        </div>
+                    {errors.decide?.message && <div className="pt-1 pl-3 text-xs text-red-500">
+                          Please choose a payment method
+                          </div>}
+                    
                   </fieldset>
                   {payment === "e-Money" && (
                     <>
