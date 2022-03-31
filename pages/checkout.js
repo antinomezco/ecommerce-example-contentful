@@ -15,6 +15,7 @@ export default function Checkout() {
   const handleChange = (e) => {
     setPayment(e.target.value);
   };
+
   const getTotalPrice = () => {
     return cart.reduce(
       (accumulator, item) => accumulator + item.quantity * item.price,
@@ -22,7 +23,7 @@ export default function Checkout() {
     );
   };
   const validationSchema = Yup.object().shape({
-    firstName: Yup.string().required("First Name is required"),
+    decide: Yup.string(),
     name: Yup.string().required("Name is required"),
     email: Yup.string()
       .required("Email is required")
@@ -44,25 +45,36 @@ export default function Checkout() {
       .matches(/(^\d{5}$)|(^\d{5}-\d{4}$)/, "Zip code is invalid"),
     city: Yup.string().required("City is required"),
     country: Yup.string().required("Country is required"),
-    eMoney: Yup.string().required(
-      "e-Money is required if not using Cash on Delivery"
-    ),
-    eMoneyPin: Yup.string().required(
-      "e-Money PIN is required if not using Cash on Delivery"
-    ),
+    eMoney: Yup.string().when("decide", (val, schema) => {
+      console.log("when emoney", val);
+      if (val === "e-Money") return Yup.string().required();
+      else return Yup.string().notRequired();
+    }),
+    eMoneyPin: Yup.string().when("decide", (val, schema) => {
+      console.log("when emoneypin", val);
+      if (val === "e-Money") return Yup.string().required();
+      else return Yup.string().notRequired();
+    }),
   });
   const formOptions = { resolver: yupResolver(validationSchema) };
 
   // get functions to build form with useForm() hook
-  const { register, handleSubmit, reset, formState } = useForm(formOptions);
+  const { register, handleSubmit, reset, formState, getValues } = useForm(
+    formOptions,
+    {
+      defaultValues: {
+        decide: "cod",
+      },
+    }
+  );
   const { errors } = formState;
-
-  function onSubmit(e) {
-    e.preventDefault();
+  console.log("formstate, error?", formState?.errors);
+  function onSubmit(data) {
+    // display form data on success
+    console.log("success");
     setFormComplete(true);
     return false;
   }
-
   return (
     <div>
       {cart.length === 0 ? (
@@ -72,7 +84,7 @@ export default function Checkout() {
           </h1>
         </div>
       ) : (
-        <form onSubmit={onSubmit} className="bg-[#f2f2f2] py-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="bg-[#f2f2f2] py-6">
           <div className="mx-auto w-11/12 space-y-6 rounded-lg bg-white p-6">
             <div className="tw-h4">checkout</div>
             <div className="tw-subtitle text-dark-orange">billing details</div>
@@ -192,28 +204,37 @@ export default function Checkout() {
                       <div className="w-full rounded-lg border-2 border-gray-300 p-3 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#D87D4A] focus:ring-opacity-100">
                         <label className="inline-flex w-full items-center">
                           <input
-                            className="form-radio "
+                            {...register("decide")}
+                            className="form-radio"
                             type="radio"
-                            name="radio-direct"
-                            value="e-Money"
+                            name="decide"
+                            id="cod"
+                            value="cod"
                             onChange={handleChange}
+                            defaultChecked={getValues("decide") === "cod"}
                           />
-                          <span className="ml-2">e-Money</span>
+                          <span className="ml-2 ">Cash on Delivery</span>
                         </label>
                       </div>
                       <div className="w-full rounded-lg border-2 border-gray-300 p-3 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#D87D4A] focus:ring-opacity-100">
                         <label className="inline-flex w-full items-center">
                           <input
-                            className="form-radio"
+                            {...register("decide")}
+                            className="form-radio "
                             type="radio"
-                            name="radio-direct"
-                            value="cod"
+                            name="decide"
+                            id="e-Money"
+                            value="e-Money"
                             onChange={handleChange}
+                            defaultChecked={getValues("decide") === "e-Money"}
                           />
-                          <span className="ml-2 ">Cash on Delivery</span>
+                          <span className="ml-2">e-Money</span>
                         </label>
                       </div>
                     </div>
+                    <div className="pt-1 pl-3 text-xs text-red-500">
+                          {errors.decide?.message}
+                        </div>
                   </fieldset>
                   {payment === "e-Money" && (
                     <>
@@ -260,9 +281,8 @@ export default function Checkout() {
             <div className="p-5">
               <div className="tw-h6">Summary</div>
               <Cart />
-
               {!formComplete ? (
-                <button type="submit" className="tw-button-orange-wide">
+                <button type="submit" className="tw-button-orange-wide mt-5">
                   Confirm Information
                 </button>
               ) : (
