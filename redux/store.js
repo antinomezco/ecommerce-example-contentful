@@ -5,7 +5,6 @@ import { loadState } from "./browser-storage";
 
 const reducer = combineReducers({
     cart: cartReducer,
-    
   });
 
 const store = configureStore({

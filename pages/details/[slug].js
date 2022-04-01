@@ -5,7 +5,6 @@ import ProductDetail from "../../components/ui/ProductDetail";
 
 export default function ProductDetails(props) {
   const router = useRouter();
-  console.log("props", props);
   const product = props.data[0];
   return (
     <div>

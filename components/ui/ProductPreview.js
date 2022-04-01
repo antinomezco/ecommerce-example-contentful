@@ -3,7 +3,6 @@ import Link from "next/link";
 import classNames from "classnames";
 
 export default function Product(props, index) {
-  console.log(index, props)
   return (
     <div className="py-12 w-11/12 mx-auto text-center space-y-6 lg:flex lg:justify-around lg:items-center">
       <div className="w-full md:hidden mx-auto image-container">

@@ -19,7 +19,6 @@ export default function Cart(props) {
       0
     );
   };
-  // console.log("cart.js", cart);
   return (
     <div>
       {props.cartComponent && (

@@ -11,7 +11,6 @@ export default function Product(props) {
   const includes = props?.includes;
   const listYma = props?.youMayAlso;
   const dispatch = useDispatch();
-  // console.log("props product detail", props)
   return (
     <div className="space-y-6">
       <div className="py-12 w-11/12 md:w-10/12 mx-auto md:grid-cols-2 space-y-6 md:grid">

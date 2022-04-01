@@ -4,9 +4,6 @@ import Link from "next/link";
 import classNames from "classnames";
 
 export default function ProductCardSimple(props) {
-  if (props) {
-    console.log("PCS", props);
-  }
   return (
     <div>
       <div

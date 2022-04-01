@@ -47,12 +47,10 @@ export default function Checkout() {
     city: Yup.string().required("City is required"),
     country: Yup.string().required("Country is required"),
     eMoney: Yup.string().when("decide", (val, schema) => {
-      console.log("when emoney", val);
       if (val === "e-Money") return Yup.string().required();
       else return Yup.string().notRequired();
     }),
     eMoneyPin: Yup.string().when("decide", (val, schema) => {
-      console.log("when emoneypin", val);
       if (val === "e-Money") return Yup.string().required();
       else return Yup.string().notRequired();
     }),
@@ -69,10 +67,8 @@ export default function Checkout() {
     }
   );
   const { errors } = formState;
-  console.log("formstate, error?", formState?.errors);
   function onSubmit(data) {
     // display form data on success
-    console.log("success");
     setFormComplete(true);
     return false;
   }
