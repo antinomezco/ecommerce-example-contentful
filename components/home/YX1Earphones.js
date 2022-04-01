@@ -2,6 +2,8 @@ import EarphoneMobile from "../../assets/home/mobile/image-earphones-yx1.jpg";
 import EarphoneTablet from "../../assets/home/tablet/image-earphones-yx1.jpg";
 import EarphoneDesktop from "../../assets/home/desktop/image-earphones-yx1.jpg";
 import Image from "next/image";
+import Link from "next/link";
+
 
 export default function YX1Earphones() {
   return (
@@ -31,7 +33,9 @@ export default function YX1Earphones() {
       </div>
       <div className="w-full h-auto pl-5 items-center py-16 grid mx-auto rounded-lg bg-gray-white space-y-10">
         <div className="title-mobile">YX1 EARPHONES</div>
-        <button className="tw-button-no-bg">See product</button>
+        <Link href="/details/yx1-earphones">
+              <a><button className="tw-button-no-bg">See product</button></a>
+              </Link>
       </div>
     </div>
   );

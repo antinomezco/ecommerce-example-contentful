@@ -2,6 +2,7 @@ import SpeakerMobile from "../../assets/home/mobile/image-speaker-zx9.png";
 import SpeakerTablet from "../../assets/home/tablet/image-speaker-zx9.png";
 import SpeakerDesktop from "../../assets/home/desktop/image-speaker-zx9.png";
 import Image from "next/image";
+import Link from "next/link"
 
 const Circles = () => {
   return (
@@ -45,7 +46,10 @@ export default function ZX9Speaker() {
           Upgrade to premium speakers that are phenomenally built to deliver
           truly remarkable sound.
         </div>
-        <button className="tw-button-black">See product</button>
+        <Link href="/details/zx9-speaker">
+              <a><button className="tw-button-black">See product</button></a>
+              </Link>
+        
       </div>
     </div>
   );

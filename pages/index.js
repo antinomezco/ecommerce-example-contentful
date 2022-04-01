@@ -1,5 +1,5 @@
 import Head from "next/head";
-
+import Link from "next/link"
 import ProductCardSimpleThree from "../components/ui/ProductCardSimpleThree";
 import ZX9Speaker from "../components/home/ZX9Speaker";
 import ZX7Speaker from "../components/home/ZX7Speaker";
@@ -25,9 +25,11 @@ export default function Index(props) {
                 Experience natural, lifelike audio and exceptional build quality
                 made for the passionate music enthusiast.
               </div>
-              <button className="tw-button-orange mx-auto lg:mx-0">
+              <Link href="/details/xx99-mark-two-headphones">
+              <a><button className="tw-button-orange mx-auto lg:mx-0">
                 See Product
-              </button>
+              </button></a>
+              </Link>
             </div>
           </div>
           <ProductCardSimpleThree />
