@@ -77,7 +77,7 @@ export default function Checkout() {
     return false;
   }
   return (
-    <div>
+    <div className="bg-[#f2f2f2]">
       {cart.length === 0 ? (
         <div className="bg-[#f2f2f2] py-6">
           <h1 className="grid place-content-center py-48">
@@ -85,13 +85,13 @@ export default function Checkout() {
           </h1>
         </div>
       ) : (
-        <form onSubmit={handleSubmit(onSubmit)} className="bg-[#f2f2f2] py-6">
-          <div className="mx-auto w-11/12 space-y-6 rounded-lg bg-white p-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="lg:w-10/12 py-6 lg:flex lg:mx-auto">
+          <div className="mx-auto w-11/12 space-y-6 rounded-lg bg-white p-6 lg:w-7/12">
             <div className="tw-h4">checkout</div>
             <div className="tw-subtitle text-dark-orange">billing details</div>
             <div>
-              <div className="mt-8 max-w-md">
-                <div className="grid grid-cols-1 gap-6">
+              <div className="mt-8 ">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <label className="block">
                     <span className="tw-label">Name</span>
                     <input
@@ -135,7 +135,7 @@ export default function Checkout() {
                       {errors.phoneNumber?.message}
                     </div>
                   </label>
-                  <div className="tw-subtitle text-dark-orange">
+                  <div className="tw-subtitle text-dark-orange md:col-span-2">
                     shipping info
                   </div>
                   <label className="block">
@@ -279,7 +279,7 @@ export default function Checkout() {
               </div>
             </div>
           </div>
-          <div className="mx-auto mt-6 w-11/12 rounded-lg bg-white">
+          <div className="mx-auto mt-6 w-11/12 rounded-lg bg-white lg:w-4/12 lg:mt-0 lg:h-96">
             <div className="p-5">
               <div className="tw-h6">Summary</div>
               <Cart />

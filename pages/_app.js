@@ -1,10 +1,9 @@
 import { Provider } from "react-redux";
-import Header from "../components/ui/Header";
-import Footer from "../components/ui/Footer";
 import store from '../redux/store';
 import "../styles/globals.css";
 import { debounce } from "debounce";
 import { saveState } from "../redux/browser-storage";
+import Layout from "../components/layout/layout"
 
 
 store.subscribe(
@@ -16,9 +15,9 @@ store.subscribe(
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      <Header />
+      <Layout >
       <Component {...pageProps} />
-      <Footer />
+      </ Layout>
     </Provider>
   );
 }

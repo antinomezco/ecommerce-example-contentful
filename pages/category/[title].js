@@ -9,7 +9,7 @@ export default function ProductCategories(props) {
     <div>
       <div className="uppercase text-center tw-h4 text-white bg-black py-6">{router.query.title}</div>
       <div>
-      {products.map((product) => (
+      {products.map((product, index) => (
           <ProductPreview
             key={product.slug}
             title={product.productName}
@@ -17,6 +17,7 @@ export default function ProductCategories(props) {
             desc={product.productDescription}
             slug={product.slug}
             images={product.imageCollection.items}
+            index={index}
           />
         ))}
       </div>
