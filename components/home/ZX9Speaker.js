@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function ZX9Speaker() {
   return (
-    <div className="background-circles justify-items relative z-10 my-16 mx-auto flex w-11/12 flex-col space-y-8 rounded-lg py-16 text-center first-letter:overflow-hidden md:w-10/12 lg:flex-row lg:justify-center lg:py-0 lg:pt-16">
+    <div className="background-circles justify-items relative z-10 my-16 mx-auto flex w-11/12 flex-col space-y-8 rounded-lg py-16 text-center first-letter:overflow-hidden md:w-10/12 lg:flex-row lg:justify-center lg:items-center lg:py-0 lg:pt-16">
       <div className="image-container mx-auto h-auto w-5/12 md:hidden ">
         <Image src={SpeakerMobile} alt="image of a speaker" />
       </div>
