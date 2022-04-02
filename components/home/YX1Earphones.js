@@ -4,10 +4,9 @@ import EarphoneDesktop from "../../assets/home/desktop/image-earphones-yx1.jpg";
 import Image from "next/image";
 import Link from "next/link";
 
-
 export default function YX1Earphones() {
   return (
-    <div className="grid gap-4 w-11/12 md:w-10/12  mx-auto h-auto py-16 md:flex">
+    <div className="mx-auto grid h-auto w-11/12  gap-4 py-16 md:flex md:w-10/12">
       <div className="image-container w-full md:hidden">
         <Image
           src={EarphoneMobile}
@@ -16,14 +15,14 @@ export default function YX1Earphones() {
           layout="responsive"
         />
       </div>
-      <div className="image-container w-full hidden md:block lg:hidden">
+      <div className="image-container hidden w-full md:block lg:hidden">
         <Image
           src={EarphoneTablet}
           className="rounded-lg "
           alt="image of a speaker"
         />
       </div>
-      <div className="image-container w-full hidden lg:block">
+      <div className="image-container hidden w-full lg:block">
         <Image
           src={EarphoneDesktop}
           className="rounded-lg "
@@ -31,11 +30,17 @@ export default function YX1Earphones() {
           layout="responsive"
         />
       </div>
-      <div className="w-full h-auto pl-5 items-center py-16 grid mx-auto rounded-lg bg-gray-white space-y-10">
-        <div className="title-mobile">YX1 EARPHONES</div>
-        <Link href="/details/yx1-earphones">
-              <a><button className="tw-button-no-bg">See product</button></a>
-              </Link>
+      <div className="mx-auto grid h-auto w-full items-center rounded-lg bg-gray-white py-16 ">
+        <div className="mx-auto w-10/12 space-y-10">
+          <div className="title-mobile">YX1 EARPHONES</div>
+          <div>
+            <Link href="/details/yx1-earphones">
+              <a>
+                <button className="tw-button-no-bg">See product</button>
+              </a>
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

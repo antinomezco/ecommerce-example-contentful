@@ -35,7 +35,7 @@ export default function Cart(props) {
 
       {cart.map((item) => (
         <div key={item.id} className="flex py-6 space-x-6 items-center ">
-          <div className="w-4/12 md:hidden image-container">
+          <div className="w-4/12 max-w-[150px] image-container">
             <Image
               className="mx-auto rounded-lg"
               src={`${item.cartImage.url}`}
@@ -105,10 +105,6 @@ export default function Cart(props) {
               $ {(getTotalPrice() * 1.2 + 50).toFixed(2)}
             </div>
           </div>
-          {/* <ConfirmationModal
-            total={(getTotalPrice() * 1.2 + 50).toFixed(2)}
-            cart={cart}
-          /> */}
         </div>
       )}
     </div>

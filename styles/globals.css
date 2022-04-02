@@ -71,7 +71,7 @@
 }
 
 .background-circles {
-  @apply bg-dark-orange bg-[url('../assets/home/desktop/pattern-circles.svg')] bg-no-repeat;
+  @apply bg-dark-orange bg-[url('../assets/home/desktop/pattern-circles.svg')] bg-cover bg-top lg:bg-left lg:bg-auto bg-no-repeat;
 }
 
 .form-val {
