@@ -7,12 +7,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useState } from "react";
 import ConfirmationModal from "../components/ui/ConfirmationModal";
+import classNames from "classnames";
 
 export default function Checkout() {
   const cart = useSelector((state) => state.cart);
   const [payment, setPayment] = useState(null);
   const [formComplete, setFormComplete] = useState(null);
-  
+
   const handleChange = (e) => {
     setPayment(e.target.value);
   };
@@ -81,82 +82,130 @@ export default function Checkout() {
           </h1>
         </div>
       ) : (
-        <form onSubmit={handleSubmit(onSubmit)} className="lg:w-10/12 py-6 lg:flex lg:mx-auto">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="py-6 lg:mx-auto lg:flex lg:w-10/12"
+        >
           <div className="mx-auto w-11/12 space-y-6 rounded-lg bg-white p-6 lg:w-7/12">
             <div className="tw-h4">checkout</div>
             <div className="tw-subtitle text-dark-orange">billing details</div>
             <div>
               <div className="mt-8 ">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   <label className="block">
-                    <span className="tw-label">Name</span>
+                    <div className="flex justify-between">
+                      <span
+                        className={classNames("tw-label", {
+                          "text-red-500": errors.name?.message,
+                        })}
+                      >
+                        Name
+                      </span>
+                      <div className="font-manrope text-xs text-red-500">
+                        {errors.name?.message}
+                      </div>
+                    </div>
                     <input
                       name="name"
                       {...register("name")}
                       type="text"
                       className={`form-val ${
-                        errors.name ? "is-invalid ring-red-500" : ""
+                        errors.name?.message ? "form-inval" : ""
                       }`}
                       placeholder="Name Here"
                     />
-                    <div className="pt-1 pl-3 text-xs text-red-500">
-                      {errors.name?.message}
-                    </div>
                   </label>
                   <label className="block">
-                    <span className="tw-label">Email Address</span>
+                    <div className="flex justify-between">
+                      <span
+                        className={classNames("tw-label", {
+                          "text-red-500": errors.name?.message,
+                        })}
+                      >
+                        Email Address
+                      </span>
+                      <div className="font-manrope text-xs text-red-500">
+                        {errors.email?.message}
+                      </div>
+                    </div>
                     <input
                       type="email"
                       name="email"
                       {...register("email")}
-                      className={`form-val ${errors.name ? "is-invalid" : ""}`}
+                      className={`form-val ${
+                        errors.email?.message ? "form-inval" : ""
+                      }`}
                       placeholder="john@example.com"
                     />
-                    <div className="pt-1 pl-3 text-xs text-red-500">
-                      {errors.email?.message}
-                    </div>
                   </label>
                   <label className="block">
-                    <span className="tw-label">Phone Number</span>
+                    <div className="flex justify-between">
+                      <span
+                        className={classNames("tw-label", {
+                          "text-red-500": errors.name?.message,
+                        })}
+                      >
+                        Phone Number
+                      </span>
+                      <div className="font-manrope text-xs text-red-500">
+                        {errors.phoneNumber?.message}
+                      </div>
+                    </div>
                     <input
                       name="phoneNumber"
                       {...register("phoneNumber")}
                       type="text"
                       className={`form-val ${
-                        errors.phoneNumber ? "is-invalid" : ""
+                        errors.phoneNumber?.message ? "form-inval" : ""
                       }`}
                       placeholder="555-555-5555"
                     />
-                    <div className="pt-1 pl-3 text-xs text-red-500">
-                      {errors.phoneNumber?.message}
-                    </div>
                   </label>
                   <div className="tw-subtitle text-dark-orange md:col-span-2">
                     shipping info
                   </div>
                   <label className="block">
-                    <span className="tw-label">Your Address</span>
+                    <div className="flex justify-between">
+                      <span
+                        className={classNames("tw-label", {
+                          "text-red-500": errors.name?.message,
+                        })}
+                      >
+                        Your Address
+                      </span>
+                      <div className="font-manrope text-xs text-red-500">
+                        {errors.address?.message}
+                      </div>
+                    </div>
                     <input
                       name="address"
                       {...register("address")}
                       type="text"
                       className={`form-val ${
-                        errors.address ? "is-invalid" : ""
+                        errors.address?.message ? "form-inval" : ""
                       }`}
                       placeholder="123 fake st."
                     />
-                    <div className="pt-1 pl-3 text-xs text-red-500">
-                      {errors.address?.message}
-                    </div>
                   </label>
                   <label className="block">
-                    <span className="tw-label">Zip Code</span>
+                    <div className="flex justify-between">
+                      <span
+                        className={classNames("tw-label", {
+                          "text-red-500": errors.name?.message,
+                        })}
+                      >
+                        Zip Code
+                      </span>
+                      <div className="font-manrope text-xs text-red-500">
+                        {errors.zipCode?.message}
+                      </div>
+                    </div>
                     <input
                       name="zipCode"
                       {...register("zipCode")}
                       type="text"
                       className={`form-val ${
-                        errors.zipCode ? "is-invalid" : ""
+                        errors.zipCode?.message ? "form-inval" : ""
                       }`}
                       placeholder="90210"
                     />
@@ -165,12 +214,25 @@ export default function Checkout() {
                     </div>
                   </label>
                   <label className="block">
-                    <span className="tw-label">City</span>
+                    <div className="flex justify-between">
+                      <span
+                        className={classNames("tw-label", {
+                          "text-red-500": errors.name?.message,
+                        })}
+                      >
+                        City{" "}
+                      </span>
+                      <div className="font-manrope text-xs text-red-500">
+                        {errors.city?.message}
+                      </div>
+                    </div>
                     <input
                       name="city"
                       {...register("city")}
                       type="text"
-                      className={`form-val ${errors.city ? "is-invalid" : ""}`}
+                      className={`form-val ${
+                        errors.city?.message ? "form-inval" : ""
+                      }`}
                       placeholder="San Diego"
                     />
                     <div className="pt-1 pl-3 text-xs text-red-500">
@@ -178,13 +240,24 @@ export default function Checkout() {
                     </div>
                   </label>
                   <label className="block">
-                    <span className="tw-label">Country</span>
+                    <div className="flex justify-between">
+                      <span
+                        className={classNames("tw-label", {
+                          "text-red-500": errors.name?.message,
+                        })}
+                      >
+                        Country{" "}
+                      </span>
+                      <div className="font-manrope text-xs text-red-500">
+                        {errors.country?.message}
+                      </div>
+                    </div>
                     <input
                       name="country"
                       {...register("country")}
                       type="text"
                       className={`form-val ${
-                        errors.country ? "is-invalid" : ""
+                        errors.country?.message ? "form-inval" : ""
                       }`}
                       placeholder="Mexico"
                     />
@@ -196,9 +269,23 @@ export default function Checkout() {
                     payment details
                   </div>
                   <fieldset className="block">
-                    <legend className="tw-label">Payment Method</legend>
+                    <div className="flex justify-between">
+                      <legend
+                        className={classNames("tw-label", {
+                          "text-red-500": errors.name?.message,
+                        })}
+                      >
+                        Payment Method
+                      </legend>
+
+                      {errors.decide?.message && (
+                        <div className="font-manrope text-xs text-red-500">
+                          Please choose a payment method
+                        </div>
+                      )}
+                    </div>
                     <div className="mt-2 space-y-4">
-                    <div className="w-full rounded-lg border-2 border-gray-300 p-3 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#D87D4A] focus:ring-opacity-100">
+                      <div className="w-full rounded-lg border-2 border-gray-300 p-3 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#D87D4A] focus:ring-opacity-100">
                         <label className="inline-flex w-full items-center">
                           <input
                             {...register("decide")}
@@ -229,53 +316,60 @@ export default function Checkout() {
                         </label>
                       </div>
                     </div>
-                    {errors.decide?.message && <div className="pt-1 pl-3 text-xs text-red-500">
-                          Please choose a payment method
-                          </div>}
-                    
                   </fieldset>
                   {payment === "e-Money" && (
                     <>
                       <label className="block">
-                        <span className="tw-label">e-Money</span>
+                        <div className="flex justify-between">
+                          <span
+                            className={classNames("tw-label", {
+                              "text-red-500": errors.name?.message,
+                            })}
+                          >
+                            e-Money
+                          </span>
+                          <div className="font-manrope text-xs text-red-500">
+                            {errors.eMoney?.message}
+                          </div>
+                        </div>
                         <input
                           type="string"
                           {...register("eMoney")}
-                          className="
-                    mt-1
-                    block
-                    w-full
-                    rounded-md
-                    border-gray-300
-                    p-3
-                    shadow-sm
-                    focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
-                  "
+                          className={`form-val ${
+                            errors.eMoney?.message ? "form-inval" : ""
+                          }`}
                           placeholder="Account number"
                         />
-                        <div className="pt-1 pl-3 text-xs text-red-500">
-                          {errors.eMoney?.message}
-                        </div>
                       </label>
                       <label className="block">
-                        <span className="tw-label">e-Money PIN</span>
+                        <div className="flex justify-between">
+                          <span
+                            className={classNames("tw-label", {
+                              "text-red-500": errors.name?.message,
+                            })}
+                          >
+                            e-Money PIN
+                          </span>
+                          <div className="font-manrope text-xs text-red-500">
+                            {errors.eMoneyPin?.message}
+                          </div>
+                        </div>
                         <input
                           type="string"
                           {...register("eMoneyPin")}
-                          className="mt-1 block w-full rounded-md border-gray-300 p-3 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                          className={`form-val ${
+                            errors.eMoneyPin?.message ? "form-inval" : ""
+                          }`}
                           placeholder="12345"
                         />
-                        <div className="pt-1 pl-3 text-xs text-red-500">
-                          {errors.eMoneyPin?.message}
-                        </div>
-                      </label>{" "}
+                      </label>
                     </>
                   )}
                 </div>
               </div>
             </div>
           </div>
-          <div className="mx-auto mt-6 w-11/12 rounded-lg bg-white lg:w-4/12 lg:mt-0 lg:self-start">
+          <div className="mx-auto mt-6 w-11/12 rounded-lg bg-white lg:mt-0 lg:w-4/12 lg:self-start">
             <div className="p-5">
               <div className="tw-h6">Summary</div>
               <Cart />
