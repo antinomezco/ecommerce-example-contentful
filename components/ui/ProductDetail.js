@@ -125,7 +125,7 @@ export default function Product(props) {
         <div className="tw-h5 text-center md:col-span-3">you may also like</div>
         {listYma?.map((itemYMA, index) => (
           <div key={index} className="space-y-10 mx-auto md:mx-3 md:col-span-1 ">
-            <div className="bg-gray-white rounded-lg grid justify-items-center md:grid-span-1 md:h-64">
+            <div className="bg-gray-white rounded-lg grid justify-items-center md:grid-span-1 ">
               <div className="w-1/2 md:w-full">
                 <Image
                   src={`${itemYMA?.url}`}
