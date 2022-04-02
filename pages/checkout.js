@@ -275,7 +275,7 @@ export default function Checkout() {
               </div>
             </div>
           </div>
-          <div className="mx-auto mt-6 w-11/12 rounded-lg bg-white lg:w-4/12 lg:mt-0 lg:h-96">
+          <div className="mx-auto mt-6 w-11/12 rounded-lg bg-white lg:w-4/12 lg:mt-0 lg:self-start">
             <div className="p-5">
               <div className="tw-h6">Summary</div>
               <Cart />
