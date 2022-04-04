@@ -5,7 +5,6 @@ import ZX9Speaker from "../components/home/ZX9Speaker";
 import ZX7Speaker from "../components/home/ZX7Speaker";
 import YX1Earphones from "../components/home/YX1Earphones";
 import BestGear from "../components/ui/BestGear";
-import { getProductSingle, getProductsSlug } from "../lib/api";
 
 
 export default function Index(props) {
@@ -46,9 +45,3 @@ export default function Index(props) {
   );
 }
 
-export async function getStaticProps({ params }) {
-  const data = (await getProductSingle("xx99-mark-two-headphones")) ?? [];
-  return {
-    props: { data },
-  };
-}

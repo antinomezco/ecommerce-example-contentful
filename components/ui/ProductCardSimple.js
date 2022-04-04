@@ -2,8 +2,13 @@ import Image from "next/image";
 import Button3 from "./Button3";
 import Link from "next/link";
 import classNames from "classnames";
+import { useSelector, useDispatch } from "react-redux";
+import { closeModal } from "../../redux/message-box.slice";
+
 
 export default function ProductCardSimple(props) {
+  const dispatch = useDispatch();
+  const messageBox = useSelector((state) => state.messageBox.value);
   return (
     <div>
       <div
@@ -33,8 +38,8 @@ export default function ProductCardSimple(props) {
           {props.item}
         </div>
         <Link href={`/category/${props.item}`}>
-          <a>
-            <Button3></Button3>
+          <a onClick={() => {dispatch(closeModal())}} >
+            <Button3 ></Button3>
           </a>
         </Link>
       </div>

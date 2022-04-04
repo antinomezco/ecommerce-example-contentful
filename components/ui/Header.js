@@ -3,21 +3,23 @@ import Link from "next/link";
 import Links from "./Links";
 import CartModal from "./CartModal";
 import ProductCardSimpleThree from "./ProductCardSimpleThree";
-import useScrollBlock from "../../lib/useScrollBlock";
+import { openModal, closeModal } from "../../redux/message-box.slice";
+import { useSelector, useDispatch } from "react-redux";
 
 
 export default function Header() {
+  const dispatch = useDispatch();
+  const messageBox = useSelector((state) => state.messageBox.value);
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const [blockScroll, allowScroll] = useScrollBlock();
-  const [isDark, setIsDark] = useState(false);
+  
   function openClose() {
-    if (!isDark) {
-      blockScroll()
-      setIsDark(true)
+    if (!messageBox) {
+      setIsNavOpen(true)
+      dispatch(openModal())
     }
     else {
-      allowScroll()
-      setIsDark(false)
+      setIsNavOpen(false)
+      dispatch(closeModal())
     }
   }
   
@@ -29,7 +31,7 @@ export default function Header() {
           {/* HAMBURGER-ICON */}
           <div
             className=" cursor-pointer space-y-2"
-            onClick={() => {setIsNavOpen((prev) => !prev);  openClose()}}
+            onClick={() => {openClose(); }}
           >
             <svg width="16" height="15" xmlns="http://www.w3.org/2000/svg">
               <g fill="#FFF" fillRule="evenodd">
@@ -59,9 +61,9 @@ export default function Header() {
           <CartModal />
         </div>
       </nav>
-      {isNavOpen && (
-        <div className="absolute top-[100px] left-0 z-20 w-full h-screen lg:hidden bg-black/50 overflow-auto">
-          <div className="bg-white rounded-b-xl">
+      {messageBox && (
+        <div className="absolute top-[100px] left-0 z-20 w-full border-2 border-b-black lg:hidden bg-black/50 overflow-auto">
+          <div className="bg-white">
             <ProductCardSimpleThree mobileMenu="true" />
           </div>
         </div>
