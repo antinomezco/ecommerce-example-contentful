@@ -1,51 +1,51 @@
 import Image from "next/image";
-import Links from "./Links";
-import Button3 from "./Button3";
 import Link from "next/link";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import ProductCardSimpleThree from "./ProductCardSimpleThree";
-import { addToCart } from '../../redux/cart.slice.js';
+import { addToCart } from "../../redux/cart.slice.js";
 import BestGear from "./BestGear";
+import { Popover, Transition } from "@headlessui/react";
+import { Fragment } from "react";
 
-export default function Product(props) {
+export default function Product(props, onClick) {
   const includes = props?.includes;
   const listYma = props?.youMayAlso;
   const dispatch = useDispatch();
   return (
     <div className="space-y-6">
-      <div className="py-12 w-11/12 md:w-10/12 mx-auto md:grid-cols-2 space-y-6 md:grid">
+      <div className="mx-auto w-11/12 space-y-6 py-12 md:grid md:w-10/12 md:grid-cols-2">
         {props.images && (
           <>
-          <div className="w-full md:hidden mx-auto image-container">
-          <Image
-            className="mx-auto"
-            src={`${props?.images[2]?.url}`}
-            alt=""
-            width={327}
-            height={327}
-            layout="responsive"
-          ></Image>
-        </div>
-        <div className="w-full hidden md:block lg:hidden md:pr-12 image-container ">
-          <Image
-            className="mx-auto"
-            src={`${props?.images[1]?.url}`}
-            alt=""
-            width={181}
-            height={280}
-            layout="responsive"
-          ></Image>
-        </div>
-        <div className="w-full hidden lg:block md:pr-12 image-container ">
-          <Image
-            className="mx-auto"
-            src={`${props?.images[2]?.url}`}
-            alt=""
-            width={540}
-            height={560}
-            layout="responsive"
-          ></Image>
-        </div>
+            <div className="image-container mx-auto w-full md:hidden">
+              <Image
+                className="mx-auto"
+                src={`${props?.images[2]?.url}`}
+                alt=""
+                width={327}
+                height={327}
+                layout="responsive"
+              ></Image>
+            </div>
+            <div className="image-container hidden w-full md:block md:pr-12 lg:hidden ">
+              <Image
+                className="mx-auto"
+                src={`${props?.images[1]?.url}`}
+                alt=""
+                width={181}
+                height={280}
+                layout="responsive"
+              ></Image>
+            </div>
+            <div className="image-container hidden w-full md:pr-12 lg:block ">
+              <Image
+                className="mx-auto"
+                src={`${props?.images[2]?.url}`}
+                alt=""
+                width={540}
+                height={560}
+                layout="responsive"
+              ></Image>
+            </div>
           </>
         )}
         <div className="flex flex-col space-y-6 pl-0 md:justify-evenly md:pl-12">
@@ -55,15 +55,42 @@ export default function Product(props) {
 
           <div className="tw-h3">{props.title}</div>
 
-          <div className="text-black/50 tw-body">{props.desc}</div>
+          <div className="tw-body text-black/50">{props.desc}</div>
 
           <div className="tw-h6">$ {props.price}</div>
 
-          <Link href={`/details/${props.slug}`}>
-            <button onClick={() => dispatch(addToCart(props))} className="tw-button-orange mx-auto md:mx-0 uppercase">
-              add to cart
-            </button>
-          </Link>
+          <Popover className="relative">
+            {({ open }) => (
+              <>
+                <button onClick={() => dispatch(addToCart(props))}>
+                  <Popover.Button className="tw-button-orange mx-auto uppercase md:mx-0">
+                    <span>add to cart</span>
+                  </Popover.Button>
+                </button>
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-200"
+                  enterFrom="opacity-0 translate-y-1"
+                  enterTo="opacity-100 translate-y-0"
+                  leave="transition ease-in duration-150"
+                  leaveFrom="opacity-100 translate-y-0"
+                  leaveTo="opacity-0 translate-y-1"
+                >
+                  <Popover.Panel className="absolute z-10 mt-3 max-w-sm transform px-4 sm:px-0 lg:max-w-3xl">
+                    <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+                      <div className="bg-gray-50 p-4">
+                        <span className="flex items-center">
+                          <span className="text-sm font-medium text-gray-900">
+                            Added {props.title} to the cart
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                  </Popover.Panel>
+                </Transition>
+              </>
+            )}
+          </Popover>
         </div>
 
         <div className="tw-h5 md:col-span-2">features</div>
@@ -76,7 +103,7 @@ export default function Product(props) {
         <ul>
           {includes?.map((include, index) => (
             <li key={index}>
-              <span className="tw-body text-dark-orange font-bold">
+              <span className="tw-body font-bold text-dark-orange">
                 {include?.quantity}x&nbsp;
               </span>
               <span className="tw-body text-black/50">
@@ -87,45 +114,48 @@ export default function Product(props) {
         </ul>
 
         {props.moreImages && (
-          <div className="grid gap-6 md:col-span-2 md:grid-cols-2 md:grid-flow-col">
-          <div className="w-full mx-auto image-container md:col-span-1">
-            <Image
-              className="mx-auto rounded-lg"
-              src={`${props?.moreImages[0]?.url}`}
-              alt=""
-              width={327}
-              height={184}
-              layout="responsive"
-            ></Image>
+          <div className="grid gap-6 md:col-span-2 md:grid-flow-col md:grid-cols-2">
+            <div className="image-container mx-auto w-full md:col-span-1">
+              <Image
+                className="mx-auto rounded-lg"
+                src={`${props?.moreImages[0]?.url}`}
+                alt=""
+                width={327}
+                height={184}
+                layout="responsive"
+              ></Image>
+            </div>
+            <div className="image-container mx-auto w-full md:col-span-1">
+              <Image
+                className="mx-auto rounded-lg"
+                src={`${props?.moreImages[1]?.url}`}
+                alt=""
+                width={327}
+                height={184}
+                layout="responsive"
+              ></Image>
+            </div>
+            <div className="image-container mx-auto w-full md:col-span-2 md:row-span-2">
+              <Image
+                className="mx-auto rounded-lg"
+                src={`${props?.moreImages[2]?.url}`}
+                alt=""
+                width={327}
+                height={368}
+                layout="responsive"
+              ></Image>
+            </div>
           </div>
-          <div className="w-full mx-auto image-container md:col-span-1">
-            <Image
-              className="mx-auto rounded-lg"
-              src={`${props?.moreImages[1]?.url}`}
-              alt=""
-              width={327}
-              height={184}
-              layout="responsive"
-            ></Image>
-          </div>
-          <div className="w-full mx-auto image-container md:row-span-2 md:col-span-2">
-            <Image
-              className="mx-auto rounded-lg"
-              src={`${props?.moreImages[2]?.url}`}
-              alt=""
-              width={327}
-              height={368}
-              layout="responsive"
-            ></Image>
-          </div>
-        </div>
         )}
       </div>
-      <div className="md:grid md:grid-cols-3 w-11/12 md:w-10/12 mx-auto space-y-6">
+      <div className="mx-auto w-11/12 space-y-6 md:grid md:w-10/12 md:grid-cols-3">
         <div className="tw-h5 text-center md:col-span-3">you may also like</div>
         {listYma?.map((itemYMA, index) => (
-          <div key={index} className="space-y-10 mx-auto md:mx-3 md:col-span-1 ">
-            <div className="bg-gray-white rounded-lg grid justify-items-center md:grid-span-1 ">
+          <div
+            key={index}
+            className="mx-auto space-y-10 md:col-span-1 md:mx-3 "
+          >
+            <div className="md:grid-span-1 grid justify-items-center rounded-lg bg-gray-white ">
               <div className="w-1/2 md:w-full">
                 <Image
                   src={`${itemYMA?.url}`}

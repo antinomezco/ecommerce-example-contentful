@@ -22,10 +22,10 @@ export default function Cart(props) {
   return (
     <div>
       {props.cartComponent && (
-        <div className="flex justify-between">
+        <div className="flex justify-between pb-3">
           <div className="tw-h6">Cart ({cart.length})</div>
           <button
-            className="tw-body underline text-black/50"
+            className="tw-body underline text-black/50 hover:text-dark-orange "
             onClick={() => dispatch(removeAllFromCart())}
           >
             Remove all
@@ -73,7 +73,6 @@ export default function Cart(props) {
                 >
                   +
                 </button>
-                {/* <button onClick={() => dispatch(removeFromCart(item.id))}>x</button> */}
               </div>
             </div>
           ) : (
