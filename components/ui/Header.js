@@ -24,7 +24,7 @@ export default function Header() {
   }
   
   return (
-    <div className="tw-relative border-b border-gray-400 bg-black py-8">
+    <header className="tw-relative border-b border-gray-400 bg-black py-8">
       <nav className="mx-auto flex w-11/12 items-center justify-between md:justify-start md:space-x-8 lg:w-10/12 lg:justify-between lg:space-x-0">
         {/* MOBILE-MENU */}
         <section className="flex lg:hidden  ">
@@ -68,6 +68,6 @@ export default function Header() {
           </div>
         </div>
       )}
-    </div>
+    </header>
   );
 }

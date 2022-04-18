@@ -3,7 +3,7 @@ import Links from "./Links";
 
 export default function Footer(data) {
   return (
-    <div className="bg-black relative">
+    <footer className="bg-black relative">
       <div className="flex justify-center w-11/12 mx-auto md:justify-start lg:w-10/12">
         <div className="h-1 w-24 bg-dark-orange"></div>
       </div>
@@ -55,6 +55,6 @@ export default function Footer(data) {
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }
