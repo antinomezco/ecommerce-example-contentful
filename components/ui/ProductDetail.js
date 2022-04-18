@@ -168,11 +168,11 @@ export default function Product(props, onClick) {
             </div>
             <div className="tw-h5 text-center">{itemYMA?.title}</div>
             <Link href={`/details/${itemYMA?.description}`}>
-              <div className="flex justify-center">
+              <a className="flex justify-center">
                 <button className="tw-button-orange mx-auto lg:mx-0 ">
                   See Product
                 </button>
-              </div>
+              </a>
             </Link>
           </div>
         ))}
