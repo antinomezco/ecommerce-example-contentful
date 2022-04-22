@@ -209,9 +209,6 @@ export default function Checkout() {
                       }`}
                       placeholder="90210"
                     />
-                    <div className="pt-1 pl-3 text-xs text-red-500">
-                      {errors.zipCode?.message}
-                    </div>
                   </label>
                   <label className="block">
                     <div className="flex justify-between">
@@ -235,9 +232,6 @@ export default function Checkout() {
                       }`}
                       placeholder="San Diego"
                     />
-                    <div className="pt-1 pl-3 text-xs text-red-500">
-                      {errors.city?.message}
-                    </div>
                   </label>
                   <label className="block">
                     <div className="flex justify-between">
@@ -261,9 +255,6 @@ export default function Checkout() {
                       }`}
                       placeholder="Mexico"
                     />
-                    <div className="pt-1 pl-3 text-xs text-red-500">
-                      {errors.country?.message}
-                    </div>
                   </label>
                   <div className="tw-subtitle text-dark-orange">
                     payment details

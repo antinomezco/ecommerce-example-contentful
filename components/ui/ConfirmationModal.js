@@ -83,7 +83,7 @@ export default function ConfirmationModal(props) {
                           key={item.id}
                           className="flex py-6 space-x-6 items-center "
                         >
-                          <div className="w-3/12 md:hidden image-container">
+                          <div className="w-3/12 image-container">
                             <Image
                               className="mx-auto rounded-lg"
                               src={`${item.cartImage.url}`}
